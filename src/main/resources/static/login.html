@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>로그인 & 회원가입</title>
+  <link rel="stylesheet" href="css/login.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <style>
+    .login-links {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    .left-text, .right-text {
+      margin: 0;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="brand">SPAS</div>
+
+  <!-- 로그인 창 -->
+  <div class="login-container">
+    <h2>로그인</h2>
+    <input type="email" id="login-email" placeholder="이메일 입력" />
+    <input type="password" id="login-password" placeholder="비밀번호 입력" />
+    <button onclick="login()">로그인</button>
+
+    <div class="login-links">
+      <p class="left-text">계정이 없나요? <a href="javascript:void(0)" onclick="toggleRegister()">회원가입</a></p>
+      <p class="right-text"><a href="javascript:void(0)" onclick="toggleFind()">비밀번호 찾기</a></p>
+    </div>
+    <!-- 소셜 로그인 -->
+  <div class="social-login">
+  <button class="social-btn kakao">
+    <img src="images/kakao.png" alt="Kakao" />
+  </button>
+  <button class="social-btn google">
+    <img src="images/google.png" alt="Google" />
+  </button>
+  <button class="social-btn naver">
+    <img src="images/naver.png" alt="Naver" />
+  </button>
+</div>
+  </div>
+
+  <!-- 회원가입 창 (3단계 구성) -->
+  <div class="register-container hidden">
+    <div id="step1" class="register-step">
+      <h2>이메일을 입력해 주세요.</h2>
+      <input type="email" id="register-email" placeholder="이메일 입력" />
+      <div class="step-info">가입에 사용할 이메일 주소를 입력해 주세요.</div>
+      <button onclick="handleEmailNext()">다음</button>
+      <p>이미 계정이 있나요? <a href="javascript:void(0)" onclick="toggleRegister()">로그인</a></p>
+    </div>
+
+    <div id="step2" class="register-step hidden">
+      <h2>이메일로 받은 인증코드를 입력해 주세요.</h2>
+      <div class="readonly-email" id="display-email"></div>
+      <input type="text" id="register-email-code" placeholder="인증번호 8자리 입력" />
+      <div id="email-verify-result" class="input-feedback"></div>
+      <button onclick="handleCodeNext()">다음</button>
+      <p><a href="javascript:void(0)" onclick="goToStep(1)">← 이메일 수정</a></p>
+    </div>
+
+    <div id="step3" class="register-step hidden">
+      <h2>회원 정보를 입력해 주세요.</h2>
+      <div class="readonly-email" id="final-email"></div>
+
+      <input type="text" id="register-nickname" placeholder="닉네임 (2~10자, 공백 없음)" />
+      <button onclick="checkNickname()">닉네임 중복 확인</button>
+
+      <input type="password" id="register-password" placeholder="비밀번호 입력 (8자 이상, 특수문자 포함)" oninput="validatePassword()" />
+      <div id="password-feedback" class="input-feedback"></div>
+
+      <input type="password" id="register-confirm" placeholder="비밀번호 확인" />
+      <button onclick="register()">가입 완료</button>
+      <p>이미 계정이 있나요? <a href="javascript:void(0)" onclick="toggleRegister()">로그인</a></p>
+    </div>
+  </div>
+
+  <!-- 비밀번호 찾기 창 (3단계 구성) -->
+  <div class="find-container hidden">
+    <div id="find-step1" class="find-step">
+      <h2>이메일을 입력하세요.</h2>
+      <input type="email" id="find-email" placeholder="가입한 이메일 입력" />
+      <button onclick="sendFindCode()">인증코드 보내기</button>
+      <p><a href="javascript:void(0)" onclick="backToLogin()">← 로그인으로 돌아가기</a></p>
+    </div>
+
+    <div id="find-step2" class="find-step hidden">
+      <h2>이메일로 받은 인증코드를 입력하세요.</h2>
+      <div class="readonly-email" id="find-display-email"></div>
+      <input type="text" id="find-code" placeholder="인증코드 8자리 입력" />
+      <button onclick="verifyFindCode()">다음</button>
+      <p><a href="javascript:void(0)" onclick="goToFindStep(1)">← 이메일 수정</a></p>
+    </div>
+
+    <div id="find-step3" class="find-step hidden">
+      <h2>새 비밀번호 설정</h2>
+      <input type="password" id="find-new-password" placeholder="새 비밀번호 (8자 이상, 특수문자 포함)" oninput="validateFindPassword()" />
+      <input type="password" id="find-confirm-password" placeholder="비밀번호 확인" />
+      <div id="find-password-feedback" class="input-feedback"></div>
+      <button onclick="resetPassword()">비밀번호 변경</button>
+    </div>
+  </div>
+
+  <script src="js/refresh-token.js"></script>
+  <script src="js/AES.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

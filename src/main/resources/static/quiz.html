@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#BFD8E2" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>퀴즈</title>
+  <link rel="stylesheet" href="css/quiz.css" />
+</head>
+<body>
+
+<!-- 로비 화면 -->
+<div id="lobbyScreen" class="fullscreen">
+  <div class="background-overlay"></div>
+  <div class="lobby-container">
+    <div class="nickname-box">
+      <div class="player-count">참여자: <span id="playerCount">0</span></div>
+      <input type="text" id="nicknameInput" placeholder="닉네임을 입력하세요" />
+      <button id="confirmNicknameBtn">닉네임 확정</button>
+      <button id="startQuizBtn" style="display: none;">퀴즈 시작</button>
+    </div>
+    <div class="participants-box">
+      <h3>참여자 목록</h3>
+      <ul id="participantsList"></ul>
+    </div>
+  </div>
+</div>
+
+<!-- 퀴즈 화면 -->
+<div id="quizScreen" style="display: none;">
+  <div class="quiz-container">
+
+    <!-- 왼쪽 패널 -->
+    <aside class="left-panel">
+      <div id="roomCodeBox">
+        <p>방 코드: <span id="roomCode">----</span></p>
+      </div>
+
+      <div class="chat-box desktop-chat">
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-box">
+          <input type="text" id="chatInput" placeholder="메시지를 입력하세요..." />
+          <button id="sendChatBtn">전송</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 오른쪽 퀴즈 메인 -->
+    <section class="right-panel">
+      <main class="quiz-main">
+        <section class="question-box">
+
+          <!-- 상단 컨트롤 -->
+          <div id="topControls" class="top-controls-inside" style="display: none;">
+            <button id="exitQuizBtn" class="exit-btn">퀴즈 나가기</button>
+            <button id="prevQuestionBtn" style="display: none;">← 이전 문제</button>
+            <button id="nextQuestionBtn" style="display: none;">다음 문제 →</button>
+            <button id="showResultBtn" style="display: none;">결과 보기</button>
+            <button id="endQuizBtn" style="display: none;">퀴즈 종료</button>
+            <div id="questionNumberBox">
+              문제 <span id="questionNumber">1</span> / <span id="totalQuestions">?</span>
+            </div>
+            <button id="quizStartControlBtn">퀴즈시작</button>
+          </div>
+
+          <div id="templateBackground" class="template-background">
+
+            <!-- 타이머 -->
+            <div id="timerBox">
+              <span id="timerText">00</span>
+            </div>
+
+            <!-- 문제 텍스트 -->
+            <div class="question-title-box">
+              <h2 id="questionText">문제 로딩 중...</h2>
+            </div>
+
+            <!-- 문제 이미지 -->
+            <div class="question-image-box">
+              <img id="questionImage" src="" alt="문제 이미지" />
+            </div>
+
+            <!-- 선택지 -->
+            <div class="choices-container">
+              <ul id="choicesList" class="choices-list"></ul>
+            </div>
+
+            <!-- 제출 버튼 -->
+            <div class="submit-button-wrapper">
+              <button id="submitAnswerBtn" class="submit-btn">제출하기</button>
+            </div>
+
+            <!-- 주관식 입력 -->
+            <div class="short-answer-box" style="display: none;">
+              <textarea id="shortAnswerInput" placeholder="정답을 입력하세요..."></textarea>
+            </div>
+
+            <!-- 결과 보기 모달 -->
+            <div id="resultModal" class="result-modal" role="dialog" aria-modal="true" aria-labelledby="resultModalTitle" style="display: none;">
+              <div class="result-modal-content">
+                <div class="result-header-center">
+                  <h2 id="resultModalTitle">결과 보기</h2>
+                  <button id="closeResultBtn">확인</button>
+                </div>
+
+                <div class="slide-controls">
+                  <button id="prevSlideBtn" class="slide-btn">←</button>
+                  <button id="nextSlideBtn" class="slide-btn">→</button>
+                </div>
+
+                <div class="result-contents">
+
+                  <!-- 객관식 -->
+                  <div id="result-multiple" class="result-section">
+                    <div class="multiple-bars"></div>
+                    <div class="multiple-pie">
+                      <h3>정답자 비율</h3>
+                      <canvas id="multipleCorrectChart" width="200" height="200"></canvas>
+                    </div>
+                  </div>
+
+                  <!-- O/X 전용 -->
+                  <div id="result-ox" class="result-section">
+                    <div class="result-ox-wrapper">
+                      <div class="ox-column">
+                        <div class="ox-image" style="background-image: url('/images/O.png');"></div>
+                        <div class="ox-count" id="oxOCount">0명</div>
+                      </div>
+
+                      <div class="ox-column">
+                        <h4>정답자 비율</h4>
+                        <canvas id="oxCorrectChart" width="200" height="200"></canvas>
+                      </div>
+
+                      <div class="ox-column">
+                        <div class="ox-image" style="background-image: url('/images/X.png');"></div>
+                        <div class="ox-count" id="oxXCount">0명</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 주관식 전용 -->
+                  <div id="result-short" style="text-align: center;">
+                    <h3 id="shortWrongTitle">오답 예시</h3>
+                    <div id="shortPostits" class="postit-container">
+                      <!-- 포스트잇 -->
+                    </div>
+                    <div id="shortGaugeWrapper" class="short-gauge-wrapper">
+                      <div id="shortGaugeBar" class="short-gauge-bar">
+                        <div id="gauge-correct" class="gauge-fill correct"></div>
+                        <div id="gauge-wrong" class="gauge-fill wrong"></div>
+                      </div>
+                        <div id="shortGaugeRate" class="short-gauge-rate">
+                          정답률: 0%
+                        </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <!-- 모바일 채팅 -->
+  <button id="mobileChatBtn" class="mobile-chat-toggle" aria-label="채팅 열기">💬</button>
+
+  <div id="mobileChatPopup" class="mobile-chat-popup">
+    <div class="chat-header">
+      <span>채팅</span>
+      <button id="closeMobileChat" aria-label="채팅 닫기">✕</button>
+    </div>
+    <div class="chat-messages" id="mobileChatMessages"></div>
+    <div class="chat-input-box">
+      <input type="text" id="mobileChatInput" placeholder="메시지를 입력하세요..." />
+      <button id="sendMobileChatBtn">전송</button>
+    </div>
+  </div>
+</div>
+
+<!-- 스크립트 -->
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<script src="js/refresh-token.js"></script>
+<script src="js/AES.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>방 참여 시스템</title>
+
+  <link rel="stylesheet" href="css/index.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body>
+
+<!-- 네비게이션 바 -->
+<div class="navbar">
+  <div class="nav-header">
+    <div class="nav-logo">
+      <a href="index.html">SPAS</a>
+    </div>
+    <div class="nav-controls">
+      <button id="loginTextButton" onclick="handleAuth()" class="mobile-only">login</button>
+      <button class="nav-toggle" onclick="toggleMobileMenu()">☰</button>
+    </div>
+  </div>
+
+  <div class="nav-center" id="mobileMenu">
+    <ul class="nav-menu">
+      <li><a href="mypage.html">마이페이지</a></li>
+      <li><a href="#">추가</a></li>
+      <li><a href="#">추가</a></li>
+      <li class="mobile-auth">
+        <button id="mobileAuthButton" onclick="handleAuth()">로그아웃</button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="nav-actions">
+    <span id="userGreeting">안녕하세요, 사용자가름</span>
+    <button id="authButton" onclick="handleAuth()">로그아웃</button>
+  </div>
+</div>
+
+<!-- 메인 Hero 섹션 -->
+<main>
+  <div class="hero-wrapper">
+    <section class="hero-section">
+      <!-- 회색 박스 -->
+      <div class="hero-left-wrapper">
+        <div class="hero-left">
+          <h1>쉽고 빠르게<br>퀴즈에 참여하세요.</h1>
+          <p> 함께 학습방을 만들어보세요!</p>
+          <div class="hero-button-group">
+            <a href="roomop.html" class="hero-btn">방 만들기</a>
+            <button class="hero-btn outline" id="join-toggle-btn">참여하기</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 캐러셀 -->
+      <div class="hero-right">
+        <div class="carousel-container">
+          <div class="carousel-track" id="carousel-track">
+            <!-- JS로 이미지가 삽입됨 -->
+          </div>
+          <button class="carousel-button prev">&lt;</button>
+          <button class="carousel-button next">&gt;</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+    <!-- 참여하기 모달 -->
+    <div id="joinModal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>방 참여</h2>
+        <input type="text" id="room-code" placeholder="방 코드 입력" />
+        <input type="password" id="room-password" placeholder="비밀번호 입력" />
+        <button id="joinButton" onclick="joinRoom()">참여하기</button>
+        <h3 style="margin-top: 20px;">최근 생성된 방</h3>
+        <ul id="rooms">
+          <li>로그인 후 확인 가능합니다.</li>
+        </ul>
+      </div>
+    </div>
+</main>
+
+<section class="feature-section">
+  <!-- 1번 -->
+  <div class="feature-box">
+    <div class="feature-image-left">
+      <img src="images/image1.png" alt="퀴즈 참여 이미지">
+    </div>
+    <div class="feature-text">
+      <h3>다양한 문제 제작</h3>
+      <p>객관식, 주관식, OX 퀴즈 등 간단하고 재미있는 <br /> 퀴즈로 수업에 쉽게 참여할 수 있어요.</p>
+    </div>
+  </div>
+
+  <!-- 2번 -->
+  <div class="feature-box gray reverse">
+    <div class="feature-image-right">
+      <img src="images/image3.png" alt="익명 게시판 이미지">
+    </div>
+    <div class="feature-text">
+      <h3>익명 게시판 / 채팅 서비스</h3>
+      <p>서로 부담 없이 질문하고 도우며, <br /> 학습자의 학습참여도를 높일 수 있습니다.</p>
+    </div>
+  </div>
+
+  <!-- 3번 -->
+  <div class="feature-box">
+    <div class="feature-image-left">
+      <img src="images/image2.png" alt="계절 퀴즈 이미지">
+    </div>
+    <div class="feature-text">
+      <h3>필요한 이미지 업로드</h3>
+      <p>퀴즈 생성시 문제와 관련된 이미지를 쉽게 <br />첨부해 퀴즈 퀄리티를 향상시킵니다.</p>
+    </div>
+  </div>
+
+  <!-- 4번 -->
+  <div class="feature-box gray reverse">
+    <div class="feature-image-right">
+      <img src="images/image4.png" alt="모바일 호환 이미지">
+    </div>
+    <div class="feature-text">
+      <h3>모바일/태블릿 호환</h3>
+      <p>어디서든 스마트폰과 태블릿을 사용해 <br />간단히 참여할 수 있어요.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 소개 섹션 (디자인 리디자인) -->
+<section class="intro-section">
+  <div class="intro-grid">
+    <div class="intro-card">
+      <i class="fas fa-users"></i>
+      <h2>Social</h2>
+      <p>친구들과 함께 퀴즈를 풀며 공유해요.</p>
+    </div>
+    <div class="intro-card">
+      <i class="fas fa-clipboard-list"></i>
+      <h2>Teacher Support</h2>
+      <p>수업 관리와 학생과 소통도 간편하게 해요.</p>
+    </div>
+    <div class="intro-card">
+      <i class="fas fa-comment-dots"></i>
+      <h2>Chat feature</h2>
+      <p>퀴즈를 풀때 참여자와 서로 메세지를 주고 받으며 협동해요.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 서비스 섹션 (디자인 리디자인) -->
+<section class="service-section">
+  <div class="service-box">
+    <div class="service-text">
+      <h2>SPAS</h2>
+      <p>
+        SPAS는 따뜻한 소통을 중심으로 설계된 학습 웹 서비스입니다.
+        졸업 프로젝트의 일환으로 시작되어, 다양한 학습 환경에서 
+        협력과 질문이 활발히 오갈 수 있도록 돕습니다.
+      </p>
+      <button class="service-button">더 알아보기</button>
+    </div>
+    <div class="service-icon">
+      <i class="fas fa-cloud"></i>
+    </div>
+  </div>
+</section>
+
+
+<!-- 푸터 -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <h1>SPAS</h1>
+      <p><a href="http://SPAS.com">http://SPAS.com</a></p>
+      <div class="footer-sns">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-center">
+      <h2>Contact Us</h2>
+      <p><i class="fas fa-envelope"></i> contact@spas.com</p>
+      <p><i class="fas fa-phone"></i> +82-10-1234-5678</p>
+      <p><i class="fas fa-map-marker-alt"></i> 충청남도 아산시 배방읍 호서로 79번길 20</p>
+    </div>
+
+    <div class="footer-right">
+      <h2>Quick Links</h2>
+      <ul>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> 회사소개</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> 이용약관</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> 개인정보처리방침</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> 고객센터</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="js/refresh-token.js"></script>
+<script src="js/AES.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f8;
+  }
+
+  /* 네비게이션 바 */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box;
+  }
+    
+    .nav-logo a {
+      margin-left: 100px;
+    }
+    
+    .nav-logo a {
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: none;
+      color: black;
+    }
+    
+    .nav-center {
+      flex: 2;
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-menu li a {
+      text-decoration: none;
+      color: black;
+      padding: 6px 12px;
+      border-radius: 20px;
+      transition: background-color 0.2s;
+    }
+    
+    .nav-menu li a:hover {
+      background-color: #f0f0f0;
+    }
+    
+    .nav-actions {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    
+    #logoutButton {
+      padding: 8px 14px !important;
+      background-color: black !important;
+      color: white !important;
+      border: none !important;
+      border-radius: 6px !important;
+      cursor: pointer !important;
+      font-family: 'Segoe UI', sans-serif !important;
+      font-size: 14px !important;
+      font-weight: normal !important;
+      line-height: normal !important;
+    }
+
+    
+    #logoutButton:hover {
+      background-color: gray;
+    }
+
+    .nav-toggle {
+    display: none;
+  }
+
+  .mypage-wrapper {
+    width: 700px;
+    margin: 0 auto;
+    padding: 40px 0;
+  }
+
+  .card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 30px 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  }
+
+  .card h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #222;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .error-text {
+    color: red;
+    font-size: 14px;
+    margin-top: 6px;
+  }
+
+  .form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  label {
+    width: 160px;
+    font-weight: 500;
+    color: #444;
+  }
+
+  input {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: #fff;
+  }
+
+  input[readonly] {
+    background-color: #f5f5f5;
+    color: #777;
+  }
+
+  .btn-row {
+    margin-top: 20px;
+  }
+
+  button {
+    padding: 10px 20px;
+    border: none;
+    font-weight: bold;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .blue-btn {
+    background-color: #002f87;
+    color: white;
+  }
+
+  .blue-btn:hover {
+    background-color: #0041b3;
+  }
+
+  .danger-btn {
+    background-color: #e74c3c;
+    color: white;
+  }
+
+  .danger-btn:hover {
+    background-color: #c0392b;
+  }
+
+  .success-text {
+    color: green;
+  }
+
+  .error-text {
+    color: red;
+  }
+
+  #save-nickname-btn {
+    transition: opacity 0.3s ease;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* 반응형 */
+    @media (max-width: 768px) {
+    
+    .mypage-wrapper {
+      width: 100%;
+      padding: 20px;
+    }
+
+    .card {
+      padding: 20px;
+    }
+
+    .navbar {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 8px 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .nav-logo a {
+      margin-left: 0 !important;
+      font-size: 20px;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .nav-toggle {
+      display: block;
+      width: auto !important;
+      margin-left: auto;
+      padding: 0;
+      background: none;
+      font-size: 30px;
+      border: none;
+      cursor: pointer;
+      color: black;
+    }
+
+    .nav-center {
+      flex: 0 !important;
+      display: none !important;
+      flex-direction: column;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .nav-center.active {
+      display: flex !important;
+    }
+
+    .nav-menu {
+      flex-direction: column;
+      gap: 10px;
+      padding-left: 0;
+    }
+
+    .nav-menu li a {
+      padding: 8px;
+      display: block;
+    }
+
+    .nav-actions {
+      display: none;
+    }
+
+    .mypage-wrapper {
+      width: 100%;
+      padding: 20px;
+    }
+
+    .form-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    label {
+      width: 100%;
+      margin-bottom: 6px;
+    }
+
+    input, button {
+      width: 100%;
+    }
+
+    .btn-row {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }

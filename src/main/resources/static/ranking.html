@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>퀴즈 랭킹 결과</title>
+
+  <!-- 스타일시트 및 아이콘 -->
+  <link rel="stylesheet" href="css/ranking.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<!-- 네비게이션 바 -->
+<div class="navbar">
+  <div class="nav-header">
+    <div class="nav-logo">
+      <a href="index.html">SPAS</a>
+    </div>
+  </div>
+</div>
+
+<!-- 메인 랭킹 컨테이너 -->
+<main class="ranking-container">
+  <h1 class="ranking-title"> 최종 퀴즈 결과 </h1>
+
+  <section class="ranking-section">
+    <h2> 점수 랭킹</h2>
+    <ol id="scoreRanking" class="ranking-list">
+      <!-- JavaScript로 채워짐 -->
+    </ol>
+  </section>
+
+  <section class="ranking-section">
+    <h2>⏱ 빠른 정답자 TOP3</h2>
+    <ol id="fastestRanking" class="ranking-list">
+      <!-- JavaScript로 채워짐 -->
+    </ol>
+  </section>
+
+  <section class="ranking-section">
+    <h2> 전체 정답률</h2>
+    <canvas id="overallChart" width="300" height="300"></canvas>
+  </section>
+
+  <div class="ranking-footer">
+    <a href="index.html" class="back-home-btn">홈으로 돌아가기</a>
+  </div>
+</main>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- JS -->
+<script src="js/ranking.js" defer></script>
+</body>
+</html>

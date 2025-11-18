@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Apple SD Gothic Neo", "맑은 고딕", sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 24px;
+  font-size: 32px;
+  color: #2c3e50;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.section h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #34495e;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 8px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background: #f9f9f9;
+  margin: 6px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+#correctRateChart {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+}
+
+#correctRateText {
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  .section h2 {
+    font-size: 20px;
+  }
+
+  li {
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPAS 마이페이지</title>
+  <link rel="stylesheet" href="css/mypage.css" />
+</head>
+<body>
+
+  <!-- 네비게이션 바 -->
+  <div class="navbar">
+    <div class="nav-header">
+      <div class="nav-logo">
+        <a href="index.html">SPAS</a>
+      </div>
+      <button class="nav-toggle" onclick="toggleMobileMenu()">☰</button>
+    </div>
+
+    <div class="nav-center" id="mobileMenu">
+      <ul class="nav-menu">
+        <li><a href="roomop.html">방 설정</a></li>
+        <li><a href="mypage.html">마이페이지</a></li>
+        <li><a href="#">추가</a></li>
+        <li><a href="#">추가</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-actions">
+      <span id="userGreeting"></span>
+      <button id="logoutButton" type="button">로그아웃</button>
+    </div>
+  </div>
+
+  <div class="mypage-wrapper">
+    <div class="card">
+      <h2>프로필 정보</h2>
+
+      <div class="form-row">
+        <label for="email">이메일</label>
+        <input type="text" id="email" readonly />
+      </div>
+
+      <div class="form-row">
+        <label for="nickname">닉네임</label>
+        <input type="text" id="nickname" readonly />
+      </div>
+
+      <div class="btn-row" id="nickname-step1">
+        <button class="blue-btn" onclick="showNicknamePasswordInput()">닉네임 변경</button>
+      </div>
+
+      <div id="nickname-step2" class="hidden">
+        <div class="form-row">
+          <label for="nickname-password">비밀번호 입력</label>
+          <input type="password" id="nickname-password" />
+        </div>
+        <div class="btn-row">
+          <button class="blue-btn" onclick="verifyNicknamePassword()">확인</button>
+        </div>
+        <p id="nickname-step2-error" class="error-text hidden">비밀번호가 틀렸습니다.</p>
+      </div>
+
+      <div id="nickname-step3" class="hidden">
+        <div class="form-row">
+          <label for="new-nickname">새 닉네임</label>
+          <input type="text" id="new-nickname" />
+        </div>
+        <div class="btn-row">
+          <button class="blue-btn" onclick="checkNicknameDuplicate()">중복 확인</button>
+        </div>
+        <p id="nickname-check-feedback" class="error-text"></p>
+
+        <div class="btn-row">
+          <button class="blue-btn hidden" id="save-nickname-btn" onclick="submitNewNickname()">닉네임 저장</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>비밀번호 변경</h2>
+
+      <div id="step1">
+        <button class="blue-btn" onclick="showCurrentPasswordInput()">비밀번호 변경</button>
+      </div>
+
+      <div id="step2" class="hidden">
+        <div class="form-row">
+          <label for="current-password">현재 비밀번호</label>
+          <input type="password" id="current-password" />
+        </div>
+        <div class="btn-row">
+          <button class="blue-btn" onclick="verifyCurrentPassword()">확인</button>
+        </div>
+        <p id="step2-error" class="error-text hidden">비밀번호가 틀렸습니다.</p>
+      </div>
+
+      <div id="step3" class="hidden">
+        <div class="form-row">
+          <label for="new-password">새 비밀번호</label>
+          <input type="password" id="new-password" oninput="validateNewPassword()" />
+        </div>
+        <div class="form-row">
+          <label for="confirm-password">비밀번호 확인</label>
+          <input type="password" id="confirm-password" />
+        </div>
+        <p id="pw-feedback" class="error-text"></p>
+        <div class="btn-row">
+          <button class="blue-btn" onclick="submitNewPassword()">비밀번호 최종 변경</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>회원 탈퇴</h2>
+
+      <div id="delete-step1">
+        <button class="danger-btn" onclick="showDeletePasswordInput()">회원 탈퇴하기</button>
+      </div>
+
+      <div id="delete-step2" class="hidden">
+        <input type="password" id="delete-password" placeholder="비밀번호 입력">
+        <div id="delete-error" class="input-feedback hidden">비밀번호가 틀렸습니다.</div>
+        <div class="btn-row">
+          <button onclick="verifyDeletePassword()" class="danger-btn">탈퇴 확인</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/refresh-token.js"></script>
+  <script src="js/AES.js"></script>
+  <script src="js/mypage.js"></script>
+</body>
+</html>

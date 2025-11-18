@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방 운영 관리</title>
+    <link rel="stylesheet" href="css/roomop.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+</head>
+
+<body>
+    <!-- 네비게이션 바 -->
+    <div class="navbar">
+        <!-- 상단 로고 + 햄버거 버튼 -->
+        <div class="nav-header">
+            <div class="nav-logo">
+                <a href="index.html">SPAS</a>
+            </div>
+            <button class="nav-toggle" onclick="toggleMobileMenu()">☰</button>
+        </div>
+
+        <!-- 네비게이션 메뉴 -->
+        <div class="nav-center" id="mobileMenu">
+            <ul class="nav-menu">
+                <li><a href="roomop.html">방 설정</a></li>
+                <li><a href="mypage.html">마이페이지</a></li>
+                <li><a href="#">추가</a></li>
+                <li><a href="#">추가</a></li>
+            </ul>
+        </div>
+
+        <!-- 유저 정보 + 로그아웃 -->
+        <div class="nav-actions">
+            <span id="userGreeting"></span>
+            <button id="logoutButton" onclick="handleLogout()">로그아웃</button>
+        </div>
+    </div>
+
+    <!-- 메인 영역 -->
+    <main>
+        <!-- 방 생성 -->
+        <section id="create-room-section">
+            <h2>방 생성</h2>
+            <input type="text" id="room-name" placeholder="방 이름">
+            <input type="password" id="room-password" placeholder="방 비밀번호">
+            <button onclick="createRoom()">방 생성</button>
+        </section>
+
+        <!-- 방 목록 -->
+        <section id="manage-rooms">
+            <h2>방 목록</h2>
+            <div id="room-grid" class="room-grid">
+            </div>
+        </section>
+    </main>
+
+    <!-- 이미지 업로드용 파일 선택 -->
+    <input type="file" id="imageInput" accept="image/*" style="display: none;">
+
+    <!-- QR 코드 모달 -->
+    <div id="qrModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>방 참여 QR 코드</h2>
+            <div id="qrCode"></div>
+            <p id="roomCodeText"></p>
+        </div>
+    </div>
+
+    <!-- 자바스크립트 -->
+     <script src="js/refresh-token.js"></script>
+     <script src="js/AES.js"></script>
+    <script src="js/roomop.js"></script>
+</body>
+</html>

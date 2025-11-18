@@ -1,0 +1,303 @@
+/* 전체 배경 및 중앙 정렬 */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.register-container input,
+.register-container button {
+  margin: 10px 0 !important;
+}
+
+.brand {
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  color: #222;
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 로그인 및 회원가입 공통 컨테이너 */
+.login-container,
+.register-container {
+  background: #ffffff;
+  padding: 40px;
+  width: 360px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-top: 60px;
+  text-align: center;
+}
+
+/* 제목 */
+h2 {
+  margin-bottom: 24px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* 입력 필드 */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* 기본 버튼 */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1f2937;
+  color: white;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #111827;
+}
+
+
+/* 일반 텍스트 */
+p {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #333;
+}
+
+/* 링크 스타일 */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 로그인/회원가입 하단 링크 정렬 */
+.links {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+/* 암호 피드백 */
+#password-feedback {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0 12px;
+  flex-wrap: wrap;
+}
+
+#password-feedback span {
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+
+/* 숨김 처리 */
+.hidden {
+  display: none !important;
+}
+
+/* 회원가입 단계 스타일 */
+.register-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-step h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.readonly-email {
+  font-weight: bold;
+  margin: 10px 0;
+  font-size: 15px;
+  color: #333;
+}
+
+.step-info {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+/* 인증번호 섹션 */
+.email-code-section {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.email-code-section input {
+  flex: 1;
+}
+
+.email-code-section button {
+  width: auto;
+  padding: 8px 14px;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+/* 피드백 텍스트 */
+.input-feedback {
+  font-size: 0.85em;
+  color: #666;
+  margin: 4px 0 10px;
+}
+
+/*비밀번호 찾기*/
+.login-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.left-text {
+  margin: 0;
+}
+
+.right-text {
+  margin: 0;
+  text-align: right;
+}
+
+/* 비밀번호 찾기 컨테이너 */
+.find-container {
+  background: #ffffff;
+  padding: 40px;
+  width: 360px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* 단계별 숨김/표시 */
+.find-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.find-step h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+/* 입력창 통일 */
+.find-step input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* 버튼 동일하게 적용 */
+.find-step button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1f2937;
+  color: white;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.find-step button:hover {
+  background-color: #111827;
+}
+
+/* 이메일 출력 */
+#find-display-email {
+  font-weight: bold;
+  margin: 10px 0;
+  font-size: 15px;
+  color: #333;
+}
+
+/* 피드백 메시지 */
+#find-password-feedback {
+  font-size: 0.85em;
+  color: #d32f2f;
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+
+/* 이전으로 돌아가기 링크 */
+.find-step a {
+  font-size: 13px;
+  color: #007bff;
+  margin-top: 15px;
+}
+
+.find-step a:hover {
+  text-decoration: underline;
+}
+
+/* 소셜 로그인 버튼 스타일 */
+.social-login {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center; 
+  margin-top: 30px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;               
+  height: 60px;
+  border: none;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  padding: 0;
+}
+
+.social-btn img {
+  width: 45px;               
+  height: 45px;
+  object-fit: contain;
+}
+
+.social-btn:hover {
+  background-color: #f0f0f0;
+}
